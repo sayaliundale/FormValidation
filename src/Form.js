@@ -134,29 +134,29 @@ const Form = () => {
     }
     return (
         <>
-            <div class="shadow-2xl rounded-md p-8 w-1/3 pl-16 mt-16 bg-white" style={{ marginLeft: '35%' }}>
+            <div className="shadow-2xl rounded-md p-8 w-1/3 pl-16 mt-16 bg-white" style={{ marginLeft: '35%' }}>
                 <p class="font-poppins text-3xl font-bold mx-32 pb-8" >Sign Up</p>
                 <form onSubmit={handleSubmit}>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handlefname} value={fname} placeholder="First Name" />
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handlefname} value={fname} placeholder="First Name" />
                     <p class="mx-8 text-red-600 mb-2">{fNameError}</p>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handlelname} value={lname} placeholder="Last Name" />
-                    <p class="mx-8 text-red-600 mb-2">{lNameError}</p>
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handlelname} value={lname} placeholder="Last Name" />
+                    <p className="mx-8 text-red-600 mb-2">{lNameError}</p>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handleUser} value={userName} placeholder="User Name" />
-                    <p class="mx-8 text-red-600 mb-2">{uNameError}</p>
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handleUser} value={userName} placeholder="User Name" />
+                    <p className="mx-8 text-red-600 mb-2">{uNameError}</p>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="email" onChange={handleEmail} value={email} placeholder="Email" />
-                    <p class="mx-8 text-red-600 mb-2">{emailError}</p>
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="email" onChange={handleEmail} value={email} placeholder="Email" />
+                    <p className="mx-8 text-red-600 mb-2">{emailError}</p>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="password" onChange={handlePassword} value={password} placeholder="Password" />
-                    <p class="mx-8 text-red-600 mb-2">{passwordError}</p>
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="password" onChange={handlePassword} value={password} placeholder="Password" />
+                    <p className="mx-8 text-red-600 mb-2">{passwordError}</p>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="number" onChange={handlePhone} value={phone} placeholder="Phone" />
-                    <p class="mx-8 text-red-600 mb-2">{phoneError}</p>
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="number" onChange={handlePhone} value={phone} placeholder="Phone" />
+                    <p className="mx-8 text-red-600 mb-2">{phoneError}</p>
 
-                    <select class="shadow-md mx-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500" onChange={handleCountry} value={country}>
+                    <select className="shadow-md mx-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500" onChange={handleCountry} value={country}>
                         <option value=""> Country</option>
                         {countries.map((country) => (
                             <option key={country} value={country}>{country}</option>
@@ -165,7 +165,7 @@ const Form = () => {
 
                     <p id="error" style={{ color: 'red' }}>{countryError}</p>
 
-                    <select class="shadow-md mx-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500" onChange={handleCity} value={city} disabled={!country}>
+                    <select className="shadow-md mx-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500" onChange={handleCity} value={city} disabled={!country}>
                         <option value="">City</option>
                         {country && cities[country].map((city) => (
                             <option key={city} value={city}>{city}</option>
@@ -174,10 +174,10 @@ const Form = () => {
 
                     <p id="error" style={{ color: 'red' }}>{cityError}</p>
 
-                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="number" onChange={handleAdhar} value={adhar} placeholder="Adhar Number" />
+                    <input className="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="number" onChange={handleAdhar} value={adhar} placeholder="Adhar Number" />
                     <p id="error" style={{ color: 'red' }}>{adharError}</p>
 
-                    <button class="border shadow-lg rounded-md mx-32 bg-lime-400 p-2 w-1/3 mt-8 text- font-semibold" type="submit">Submit</button>
+                    <button className="border shadow-lg rounded-md mx-32 bg-lime-400 p-2 w-1/3 mt-8 text- font-semibold" type="submit">Submit</button>
                 </form>
             </div>
 
