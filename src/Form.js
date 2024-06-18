@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
     const countries = ["India", "USA", "UK"];
     const cities = {
-        India: ["Delhi", "Mumbai", "Chennai"],
+        India: ["Delhi", "Mumbai", "Chennai", "Hydrabad", "Banglore"],
         USA: ["New York", "Los Angeles", "Chicago"],
         UK: ["London", "Manchester", "Liverpool"]
     };
@@ -24,8 +25,10 @@ const Form = () => {
     const [phoneError, setPhoneError] = useState("");
     const [countryError, setCountryError] = useState("");
     const [cityError, setCityError] = useState("");
-    const [adharError, setAdharError] = useState("")
+    const [adharError, setAdharError] = useState("");
+    const formData = { fname, lname, userName, password, adhar, phone, email, city, country };
     const Email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -50,9 +53,14 @@ const Form = () => {
             setCountryError("Please select country");
         }
         else if (!city.trim()) {
-            setCityError("Please select the city")
+            setCityError("Please select the city");
         }
-       
+        else if (fname && lname && adhar && phone && country && city && password && email && userName) {
+            navigate("/display", { state: { formData } });
+        }
+        else {
+            navigate("")
+        }
     }
 
     const handlefname = (e) => {
@@ -126,57 +134,53 @@ const Form = () => {
     }
     return (
         <>
-            <center>
-                <div className="form">
-                    <h1>Sign Up</h1>
-                    <form onSubmit={handleSubmit}>
-                        <p>First Name : <input type="text" onChange={handlefname} value={fname} /></p>
-                        <p id="error" style={{ color: 'red' }}>{fNameError}</p>
+            <div class="shadow-2xl rounded-md p-8 w-1/3 pl-16 mt-16 bg-white" style={{ marginLeft: '35%' }}>
+                <p class="font-poppins text-3xl font-bold mx-32 pb-8" >Sign Up</p>
+                <form onSubmit={handleSubmit}>
 
-                        <p>Last Name : <input type="text" onChange={handlelname} value={lname} /></p>
-                        <p id="error" style={{ color: 'red' }}>{lNameError}</p>
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handlefname} value={fname} placeholder="First Name" />
+                    <p class="mx-8 text-red-600 mb-2">{fNameError}</p>
 
-                        <p>Username : <input type="text" onChange={handleUser} value={userName} /></p>
-                        <p id="error" style={{ color: 'red' }}>{uNameError}</p>
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handlelname} value={lname} placeholder="Last Name" />
+                    <p class="mx-8 text-red-600 mb-2">{lNameError}</p>
 
-                        <p>Email : <input type="email" onChange={handleEmail} value={email} /></p>
-                        <p id="error" style={{ color: 'red' }}>{emailError}</p>
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="text" onChange={handleUser} value={userName} placeholder="User Name" />
+                    <p class="mx-8 text-red-600 mb-2">{uNameError}</p>
 
-                        <p>Password : <input type="password" onChange={handlePassword} value={password} /></p>
-                        <p id="error" style={{ color: 'red' }}>{passwordError}</p>
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="email" onChange={handleEmail} value={email} placeholder="Email" />
+                    <p class="mx-8 text-red-600 mb-2">{emailError}</p>
 
-                        <p>Phone No. : <input type="number" onChange={handlePhone} value={phone} /></p>
-                        <p id="error" style={{ color: 'red' }}>{phoneError}</p>
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="password" onChange={handlePassword} value={password} placeholder="Password" />
+                    <p class="mx-8 text-red-600 mb-2">{passwordError}</p>
 
-                        <p>
-                            Country:
-                            <select onChange={handleCountry} value={country}>
-                                <option value=""> Select Country</option>
-                                {countries.map((country) => (
-                                    <option key={country} value={country}>{country}</option>
-                                ))}
-                            </select>
-                        </p>
-                        <p id="error" style={{ color: 'red' }}>{countryError}</p>
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="number" onChange={handlePhone} value={phone} placeholder="Phone" />
+                    <p class="mx-8 text-red-600 mb-2">{phoneError}</p>
 
-                        <p>
-                            City:
-                            <select onChange={handleCity} value={city} disabled={!country}>
-                                <option value="">Select City</option>
-                                {country && cities[country].map((city) => (
-                                    <option key={city} value={city}>{city}</option>
-                                ))}
-                            </select>
-                        </p>
-                        <p id="error" style={{ color: 'red' }}>{cityError}</p>
+                    <select class="shadow-md mx-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500" onChange={handleCountry} value={country}>
+                        <option value=""> Country</option>
+                        {countries.map((country) => (
+                            <option key={country} value={country}>{country}</option>
+                        ))}
+                    </select>
 
-                        <p>Adhar Number : <input type="number" onChange={handleAdhar} value={adhar} /></p>
-                        <p id="error" style={{ color: 'red' }}>{adharError}</p>
+                    <p id="error" style={{ color: 'red' }}>{countryError}</p>
 
-                        <button>Submit</button>
-                    </form>
-                </div>
-            </center>
+                    <select class="shadow-md mx-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500" onChange={handleCity} value={city} disabled={!country}>
+                        <option value="">City</option>
+                        {country && cities[country].map((city) => (
+                            <option key={city} value={city}>{city}</option>
+                        ))}
+                    </select>
+
+                    <p id="error" style={{ color: 'red' }}>{cityError}</p>
+
+                    <input class="shadow-md mx-2 px-2 w-5/6 mb-4 border border-gray-600 bg-gray-100 rounded-md p-1 hover:grey-500 placeholder-black" type="number" onChange={handleAdhar} value={adhar} placeholder="Adhar Number" />
+                    <p id="error" style={{ color: 'red' }}>{adharError}</p>
+
+                    <button class="border shadow-lg rounded-md mx-32 bg-lime-400 p-2 w-1/3 mt-8 text- font-semibold" type="submit">Submit</button>
+                </form>
+            </div>
+
         </>
     )
 }
